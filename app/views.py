@@ -53,7 +53,7 @@ def login():
                 login_user(user)
                 
             # remember to flash a message to the user
-                flash('Log in successful!', 'success')
+                flash("Log in successful!", 'success')
                 return redirect(url_for("secure_page"))  # they should be redirected to a secure-page route instead
             else:
                 flash("Username or Password invalid", 'danger')
@@ -64,6 +64,12 @@ def login():
 @login_required
 def secure_page():
     return render_template("secure_page.html")
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    flash("You have been logged out.", 'danger')
+    return redirect(url_for('home'))
 
 
 
